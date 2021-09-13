@@ -1,2 +1,2 @@
-# Miro-Effio-
+# Miro-Effio
 Brainstorming tool for Miro 
