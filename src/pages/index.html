@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miro Template Generator</title>
+    <script src="https://miro.com/app/static/sdk.1.1.js"></script>
+    <link rel="stylesheet" href="./assets/css/main.css">
+</head>
+
+<body>
+    <div class="content">
+        <div class="container" id="options">
+            <!-- Type -->
+            <div class="option" id="div_type" style="display:block;">
+                <label for="type">What is the type of meeting:</label>
+                <br>
+                <select name="type" id="type" onchange="load_button('button_type')">
+                    <option disabled selected value> -- Choose meeting type -- </option>
+                    <option value="brainstorm_fp">Brainstorm (first phase)</option>
+                    <option value="brainstorm_lp">Brainstorm (late phase)</option>
+                    <option value="issue">Issue</option>
+                    <option value="issue_c">Issue (complex)</option>
+                    <option value="planning">Planning</option>
+                    <option value="planning_st">Planning (short term)</option>
+                    <option value="planning_lt">Planning (long term)</option>
+                    <option value="www_plan">Who, what, where plan</option>
+                </select>
+                <br>
+                <button onclick="load(div_participants)" id="button_type" disabled>
+                    Go to next step
+                </button>
+            </div>
+
+            <!-- Number of participants -->
+            <div class="option" id="div_participants">
+                <hr>
+                <label for="participants">
+                    How many people will participate in the meeting?
+                </label>
+                <br>
+                <input type="number" name="quantity" id="participant_amount" min="1" placeholder="0"
+                oninput="check_number('button_participants')" onchange="load_button('button_participants')">
+                <br>
+                <button onclick="load(div_explanation)" id="button_participants" disabled>
+                    Go to next step
+                </button>
+            </div>
+
+            <!-- Explanation line in template -->
+            <div class="option" id="div_explanation">
+                <hr>
+                Would you like an explanation with an example in your template?
+                <br>
+                <input type="radio" name="choice" value="True" onchange="load_button('button_explanation')">Yes</input>
+                <br>
+                <input type="radio" name="choice" value="False" onchange="load_button('button_explanation')">No</input>
+                <br>
+                <button onclick="generate_template()" id="button_explanation" disabled>
+                    Generate template
+                </button>
+            </div>
+        </div>
+
+        <div class="container" id="div_parameters" style="display:none">
+            <span class="title">Template parameters</span>
+            <p>
+                The following choices were made:
+                <br>
+                <br>
+                Meeting type: <span id="parameter_type">None</span>
+                <br>
+                Amount of participants: <span id="parameter_amount">None</span>
+                <br>
+                Example: <span id="parameter_example">None</span>
+            </p>
+        </div>
+    </div>
+</body>
+
+<script src="assets/js/options.js"></script>
+
+</html>
