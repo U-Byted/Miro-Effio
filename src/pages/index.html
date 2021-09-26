@@ -6,18 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Miro Template Generator</title>
     <script src="https://miro.com/app/static/sdk.1.1.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/mirotone/dist/styles.css" />
     <link rel="stylesheet" href="./assets/css/main.css">
 </head>
 
 <body>
-    <div class="content">
+    <div id="header">
+        <h1 class="h1">Generate an Efficio template</h1>
+        <h2 class="h2">Fill in the options below</h2>
+    </div>
+    <div id="content">
         <div class="container" id="options">
             <!-- Type -->
-            <div class="option" id="div_type" style="display:block;">
-                <label for="type">What is the type of meeting:</label>
-                <br>
-                <select name="type" id="type" onchange="load_button('button_type')">
-                    <option disabled selected value> -- Choose meeting type -- </option>
+            <div class="form-group grid">
+                <label class="cs1 ce8"><strong>Meeting type</strong><br>The type of meeting you are having.</label>
+                <select name="type" id="meetingType" class="select cs9 ce12" onchange="checkGenerationButton()">
+                    <option disabled selected value>Choose meeting type</option>
                     <option value="brainstorm_fp">Brainstorm (first phase)</option>
                     <option value="brainstorm_lp">Brainstorm (late phase)</option>
                     <option value="issue">Issue</option>
@@ -27,54 +31,26 @@
                     <option value="planning_lt">Planning (long term)</option>
                     <option value="www_plan">Who, what, where plan</option>
                 </select>
-                <br>
-                <button onclick="load(div_participants)" id="button_type" disabled>
-                    Go to next step
-                </button>
             </div>
+
+            <hr />
 
             <!-- Number of participants -->
-            <div class="option" id="div_participants">
-                <hr>
-                <label for="participants">
-                    How many people will participate in the meeting?
-                </label>
-                <br>
-                <input type="number" name="quantity" id="participant_amount" min="1" placeholder="0"
-                oninput="check_number('button_participants')" onchange="load_button('button_participants')">
-                <br>
-                <button onclick="load(div_explanation)" id="button_participants" disabled>
-                    Go to next step
-                </button>
+            <div class="form-group grid">
+                <label class="cs1 ce8"><strong>Participants</strong><br>How many people will participate in the meeting?</label>
+                <input class="input cs9 ce12" type="number" name="quantity" id="participantAmount" min="1" placeholder="0" oninput="checkGenerationButton()" onchange="checkGenerationButton()">
             </div>
+
+            <hr />
 
             <!-- Explanation line in template -->
-            <div class="option" id="div_explanation">
-                <hr>
-                Would you like an explanation with an example in your template?
-                <br>
-                <input type="radio" name="choice" value="True" onchange="load_button('button_explanation')">Yes</input>
-                <br>
-                <input type="radio" name="choice" value="False" onchange="load_button('button_explanation')">No</input>
-                <br>
-                <button onclick="generate_template()" id="button_explanation" disabled>
-                    Generate template
-                </button>
+            <div class="form-group grid">
+                <label class="cs1 ce8"><strong>Explanation</strong><br>Would you like an explanation with an example in your template?</label>
+                <label class="toggle cs9 ce12"><input type="checkbox" id="wantExplanation"><span style="display: table; margin: 0 auto;"></span></label>
             </div>
         </div>
-
-        <div class="container" id="div_parameters" style="display:none">
-            <span class="title">Template parameters</span>
-            <p>
-                The following choices were made:
-                <br>
-                <br>
-                Meeting type: <span id="parameter_type">None</span>
-                <br>
-                Amount of participants: <span id="parameter_amount">None</span>
-                <br>
-                Example: <span id="parameter_example">None</span>
-            </p>
+        <div class="grid">
+            <button class="button button-primary cs1 ce3" type="button" id="generationButton" disabled onclick="makeSomething()">Generate</button>
         </div>
     </div>
 </body>

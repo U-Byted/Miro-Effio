@@ -5,72 +5,38 @@ body {
   height: 100%;
   width: 100%;
   font-family: "Nirmala UI";
-  background-color: #f8f9fa;
+  background-color: #ececec;
   font-size: large;
-  overflow-y: scroll;
 }
 
-.content {
+#header {
+  padding: 50px;
+  padding-bottom: 20px;
+  background-color: #ececec;
+}
+
+#content {
+  height: 100%;
   margin: 0;
-  padding: 15px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 20px;
+  box-shadow: 0px -3px 6px #0000003b;
+  border-radius: 15px 15px 0px 0px;
+  background-color: #fcfcfc;
 }
 
-.container {
-  background-color: white;
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 15px;
-  -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
-          box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+.span-toggle {
+  display: table; margin: 0 auto;
 }
 
-.container .option {
-  display: none;
-  width: 100%;
+.toggle input[type="checkbox"] + span::before {
+  width: 34px;
+  height: 22px;
+  border-radius: 16px;
 }
 
-.container .option select {
-  font-size: large;
-  margin-top: 10px;
-  border-radius: 5px;
-  padding: 4px;
-  width: 100%;
+.toggle input[type='checkbox'] + span::after {
+  width: 18px;
+  height: 18px;
 }
-
-.container .option input[type="number"] {
-  font-size: large;
-  margin-top: 10px;
-  border-radius: 5px;
-  padding: 4px;
-  width: 100%;
-}
-
-.container .option button {
-  font-size: large;
-  border: none;
-  border-radius: 5px;
-  margin-top: 10px;
-  background-color: navy;
-  color: white;
-  padding: 10px;
-}
-
-.container .option button:disabled {
-  font-size: large;
-  background-color: lightgrey;
-  color: grey;
-}
-
-#div_parameters .title {
-  font-size: larger;
-  font-weight: bold;
-}
-
-@media only screen and (min-width: 640px) {
-  .container {
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-/*# sourceMappingURL=main.css.map */
