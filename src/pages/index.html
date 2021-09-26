@@ -12,7 +12,7 @@
 
 <body>
     <div id="header">
-        <h1 class="h1">Generate an Efficio template</h1>
+        <h1 class="h1">Generate an Effio template</h1>
         <h2 class="h2">Fill in the options below</h2>
     </div>
     <div id="content">
@@ -43,18 +43,21 @@
 
             <hr />
 
-            <!-- Explanation line in template -->
+            <!-- Example line in template -->
             <div class="form-group grid">
-                <label class="cs1 ce8"><strong>Explanation</strong><br>Would you like an explanation with an example in your template?</label>
-                <label class="toggle cs9 ce12"><input type="checkbox" id="wantExplanation"><span style="display: table; margin: 0 auto;"></span></label>
+                <label class="cs1 ce8"><strong>Example</strong><br>Would you like an example in your template?</label>
+                <label class="toggle cs9 ce12"><input type="checkbox" id="wantExample"><span style="display: table; margin: 0 auto;"></span></label>
             </div>
         </div>
         <div class="grid">
-            <button class="button button-primary cs1 ce3" type="button" id="generationButton" disabled onclick="makeSomething()">Generate</button>
+            <button class="button button-primary cs1 ce3" type="button" id="generationButton" disabled onclick="generate()">Generate</button>
         </div>
     </div>
 </body>
 
-<script src="assets/js/options.js"></script>
+<script src="./../../assets/templates/templateTypes.js"></script>
+<script src="./../../assets/templates/brainstorm.js"></script>
+<script src="./../template-generator/factory.js"></script>
+<script src="./assets/js/options.js"></script>
 
 </html>

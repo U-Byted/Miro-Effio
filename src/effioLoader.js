@@ -3,7 +3,7 @@ miro.onReady(() => {
     miro.initialize({
         extensionPoints: {
             toolbar: {
-                title: 'Efficio',
+                title: 'Effio',
                 toolbarSvgIcon: icon24,
                 librarySvgIcon: icon24,
                 onClick: () => {
@@ -11,7 +11,9 @@ miro.onReady(() => {
                 }
             }
         }
-    })
+    });
+
+    console.log(miro)
 })
 
 async function onToolbarAppButtonClicked() {
@@ -23,10 +25,10 @@ async function onToolbarAppButtonClicked() {
     }
 
     // Once authorized, open the app.
-    openEfficio()
+    openEffio()
 }
 
-function openEfficio() {
+function openEffio() {
     miro.board.ui.openLeftSidebar('main-app-sidebar.html')
 }
 
