@@ -101,10 +101,9 @@ class Row {
     };
 }
 
-class Factory {
-    rowPosY = 0;
+class Factory {    
+    nextRowY = 0;
     rowPadding = 50;
-    columnPadding = 50;
 
     constructor(template, options) {
         this.template = template;
@@ -112,85 +111,33 @@ class Factory {
     }
 
     build() {
-        const miroItems = [];
-        this.template.forEach(item => {
-            switch(item.type) {
-                case stepType.HEADER:
-                    miroItems.push(this.buildHeader(item));
-                    break;
-                case stepType.ROW:
-                    miroItems.push(this.buildRow(item));
-                    break;
-            }
-        });
-        return miroItems;
+        const header = this.buildHeader(this.template[0]);
+
+        console.log(this.nextRowY)
+        let nextRowY = parseInt(this.nextRowY);
+        const rows = this.buildRows();                               // Generate all elements in each row and put them into a row object
+        rows.forEach(r => r.positionElementsX(this.columnPadding));  // Position all elements in each row, keeping track of positions
+        rows.forEach(r => nextRowY = r.positionElementsY(nextRowY)); // Position all rows relative to one another
+        const leftMostX = rows.map(r => r.left).sort()[0];           // Find the left most position of each row
+        rows.forEach(r => r.positionDescriptionElement(leftMostX));  // Position all desciption elements to the left of all rows 
+
+        const allItems = [header];
+        rows.forEach(r => allItems.push(r.allElements()))
+        return allItems;
     }
 
     buildHeader(header) {
-        const titleBar =  header.elements[0];
-        titleBar.y += this.rowPosY;
-        const items = [titleBar];
-        this.rowPosY += titleBar.height + this.rowPadding;
-        return items;
+        const titleBar = header.elements[0];
+        titleBar.y += this.nextRowY;
+        this.nextRowY += titleBar.height + this.rowPadding;
+        return titleBar;
     }
 
-    buildRow(row) {
-        // Evry iteration the following must happen: 
-        // Generate the whole row as if its the first row
-        // Find the higest point in the row, and shift it down so that it is lower than the this.rowPosY
-        // Find the lowest point of the row, and use this to calculate the this.rowPosY
-        // Find the left most point in the row, and use this to know where to place the explenations later on.
-
-        // Create elements that the users interact with
-        const items = [];
-
-        // Create all elements
-        let elements = [];
-        if(row.elements){
-            row.elements.forEach(element => {
-                elements.push(this.buildRowElement(element));
-            });
-        }
-
-        // Position the elements to the middle of the page
-        elements = elements.flat(Infinity);
-        const first = elements[0];
-        const elementsWidth = elements[elements.length - 1].x - first.x;
-        const elementsOffset = elementsWidth / 2;
-        elements.forEach(e => e.x -= elementsOffset);
-
-        // Create the step decription
-        if(row.description) {
-            const explanation = {
-                type: "shape",
-                text: row.description,
-                width: 300,
-                x: 0,
-                y: first.y,
-                style: {
-                    backgroundColor: "#ADDBD2",
-                    backgroundOpacity: 0.3,
-                    shapeType: miro.enums.shapeType.ROUNDER
-                },
-            };
-            explanation.x = first.x - explanation.width;
-            items.push(explanation);
-        }
-        items.push(elements);
-        this.rowPosY += 200 + this.rowPadding;
-        return items;
-    }
-
-    buildRowElement(element) {
-        if(element.type == "") return [];
-        element.y += this.rowPosY;
-        const items = [{...element}];
-        if(element.repeating) {
-            for(let i = 0; i < this.participants - 1; i++) {
-                element.x += element.width + this.columnPadding;
-                items.push({...element});
-            }
-        }
-        return items;
+    buildRows() {
+        const rows = [];
+        this.template.forEach(r => {
+            if(r.type == stepType.ROW) rows.push(new Row(r, this.participants))
+        });
+        return rows
     }
 }
