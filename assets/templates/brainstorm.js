@@ -27,6 +27,7 @@ const brainstorm = [
                 type: elementType.TEXT,
                 text: "Here you can pose the question you want to start you meeting with. For example: How did you wake up this morning? What did you laugh about today?",
                 width: 270,
+                height: 180,
                 scale: 3,
                 y: 0,
                 x: 0,
@@ -56,39 +57,40 @@ const brainstorm = [
             }
         ]
     },
-    // {
-    //     name: "reflection",
-    //     description: "Reflection on previous meeting.",
-    //     type: stepType.ROW, 
-    // },
-    // {
-    //     name: "personal-brainstorm",
-    //     description: "10 minute personal brainstorm.\nShort presentation from every participant.\nTime to ask questions or discuss ideas presented.",
-    //     type: stepType.ROW, 
-    // },
-    // {
-    //     name: "new-ideas",
-    //     description: "Noting any new ideas or additions. Cluster if needed.",
-    //     type: stepType.ROW, 
-    // },
-    // {
-    //     name: "break",
-    //     description: "Space for a break.",
-    //     type: stepType.ROW, 
-    // },
-    // {
-    //     name: "work-out",
-    //     description: "Everyone picks one idea to work out. Then adds something to every chosen idea.",
-    //     type: stepType.ROW, 
-    // },
-    // {
-    //     name: "discuss-ideas",
-    //     description: "Going over each idea, review them and discuss them.\nNote final ideas in last boxes.",
-    //     type: stepType.ROW, 
-    // },
-    // {
-    //     name: "minutes",
-    //     description: "This last part can be used as minutes or another form of reference to rework it to a textual plan if needed.\nTIP: if all the steps are put on post-its, they can be exported to Excel.",
-    //     type: stepType.ROW, 
-    // },
+    {
+        name: "reflection",
+        description: "Reflection on previous meeting.",
+        type: stepType.ROW, 
+        link: "personal-brainstorm",
+    },
+    {
+        name: "personal-brainstorm",
+        description: "10 minute personal brainstorm.\nShort presentation from every participant.\nTime to ask questions or discuss ideas presented.",
+        type: stepType.ROW, 
+    },
+    {
+        name: "new-ideas",
+        description: "Noting any new ideas or additions. Cluster if needed.",
+        type: stepType.ROW, 
+    },
+    {
+        name: "break",
+        description: "Space for a break.",
+        type: stepType.ROW, 
+    },
+    {
+        name: "work-out",
+        description: "Everyone picks one idea to work out. Then adds something to every chosen idea.",
+        type: stepType.ROW, 
+    },
+    {
+        name: "discuss-ideas",
+        description: "Going over each idea, review them and discuss them.\nNote final ideas in last boxes.",
+        type: stepType.ROW, 
+    },
+    {
+        name: "minutes",
+        description: "This last part can be used as minutes or another form of reference to rework it to a textual plan if needed.\nTIP: if all the steps are put on post-its, they can be exported to Excel.",
+        type: stepType.ROW, 
+    },
 ]
